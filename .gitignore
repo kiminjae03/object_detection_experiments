@@ -1,0 +1,116 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# PyTorch
+*.pth
+*.pt
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# Environment variables
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Conda
+envs/
+pkgs/
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Logs
+*.log
+logs/
+*.out
+
+# Large model files
+*.bin
+*.safetensors
+*.index
+*.h5
+*.ckpt
+
+# Data files (but keep small examples)
+*/data/coco/
+*/data/*/train/
+*/data/*/val/
+*/data/*/test/
+*.zip
+*.tar.gz
+*.rar
+*.7z
+
+# Results and outputs (keep summaries but exclude large files)
+*/results/*.json
+!*/results/*summary*.json
+!*/results/*report*.json
+*/outputs/
+*/checkpoints/
+
+# Pretrained models (too large for Git)
+*/pretrained_models/
+*/models/
+*.pth
+*.pt
+*.onnx
+
+# Temporary files
+*.tmp
+*.temp
+temp/
+tmp/
+
+# Cache directories
+.cache/
+*/__pycache__/
+*/cache/
+
+# Large visualization outputs
+*/visualization_results/*.png
+*/visualization_results/*.jpg
+!*/visualization_results/summary*.png
+
+# Conda/pip
+*.conda
+*.whl

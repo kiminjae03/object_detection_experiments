@@ -1,0 +1,125 @@
+{
+  "total_images_analyzed": 994,
+  "filtering_stats": {
+    "images_with_gt_objects": 990,
+    "images_with_5plus_detections": 382,
+    "worst_cases_available": 3,
+    "best_cases_available": 3
+  },
+  "quality_score_stats": {
+    "min": 0.0,
+    "max": 1.0,
+    "avg": 0.712110974439967
+  },
+  "visualizations_created": 9,
+  "visualization_details": [
+    {
+      "case_type": "worst",
+      "case_number": 1,
+      "image_id": 181859,
+      "quality_score": 0.0,
+      "output_file": "worst_1_id181859_quality0.000.png",
+      "metrics": {
+        "predictions": 4,
+        "ground_truth": 2,
+        "image_path": "/home/mmpl/workspace/Qwen25_VL_Experiments/data/coco/val2017/000000181859.jpg"
+      }
+    },
+    {
+      "case_type": "worst",
+      "case_number": 2,
+      "image_id": 300842,
+      "quality_score": 0.0,
+      "output_file": "worst_2_id300842_quality0.000.png",
+      "metrics": {
+        "predictions": 2,
+        "ground_truth": 1,
+        "image_path": "/home/mmpl/workspace/Qwen25_VL_Experiments/data/coco/val2017/000000300842.jpg"
+      }
+    },
+    {
+      "case_type": "worst",
+      "case_number": 3,
+      "image_id": 212166,
+      "quality_score": 0.0,
+      "output_file": "worst_3_id212166_quality0.000.png",
+      "metrics": {
+        "predictions": 2,
+        "ground_truth": 1,
+        "image_path": "/home/mmpl/workspace/Qwen25_VL_Experiments/data/coco/val2017/000000212166.jpg"
+      }
+    },
+    {
+      "case_type": "medium",
+      "case_number": 1,
+      "image_id": 228144,
+      "quality_score": 0.75,
+      "output_file": "medium_1_id228144_quality0.750.png",
+      "metrics": {
+        "predictions": 5,
+        "ground_truth": 4,
+        "image_path": "/home/mmpl/workspace/Qwen25_VL_Experiments/data/coco/val2017/000000228144.jpg"
+      }
+    },
+    {
+      "case_type": "medium",
+      "case_number": 2,
+      "image_id": 366141,
+      "quality_score": 0.75,
+      "output_file": "medium_2_id366141_quality0.750.png",
+      "metrics": {
+        "predictions": 3,
+        "ground_truth": 4,
+        "image_path": "/home/mmpl/workspace/Qwen25_VL_Experiments/data/coco/val2017/000000366141.jpg"
+      }
+    },
+    {
+      "case_type": "medium",
+      "case_number": 3,
+      "image_id": 342006,
+      "quality_score": 0.75,
+      "output_file": "medium_3_id342006_quality0.750.png",
+      "metrics": {
+        "predictions": 3,
+        "ground_truth": 4,
+        "image_path": "/home/mmpl/workspace/Qwen25_VL_Experiments/data/coco/val2017/000000342006.jpg"
+      }
+    },
+    {
+      "case_type": "best",
+      "case_number": 1,
+      "image_id": 18575,
+      "quality_score": 1.0,
+      "output_file": "best_1_id18575_quality1.000.png",
+      "metrics": {
+        "predictions": 8,
+        "ground_truth": 8,
+        "image_path": "/home/mmpl/workspace/Qwen25_VL_Experiments/data/coco/val2017/000000018575.jpg"
+      }
+    },
+    {
+      "case_type": "best",
+      "case_number": 2,
+      "image_id": 414034,
+      "quality_score": 1.0,
+      "output_file": "best_2_id414034_quality1.000.png",
+      "metrics": {
+        "predictions": 5,
+        "ground_truth": 5,
+        "image_path": "/home/mmpl/workspace/Qwen25_VL_Experiments/data/coco/val2017/000000414034.jpg"
+      }
+    },
+    {
+      "case_type": "best",
+      "case_number": 3,
+      "image_id": 559543,
+      "quality_score": 1.0,
+      "output_file": "best_3_id559543_quality1.000.png",
+      "metrics": {
+        "predictions": 5,
+        "ground_truth": 5,
+        "image_path": "/home/mmpl/workspace/Qwen25_VL_Experiments/data/coco/val2017/000000559543.jpg"
+      }
+    }
+  ]
+}

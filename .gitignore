@@ -76,6 +76,9 @@ logs/
 */data/*/train/
 */data/*/val/
 */data/*/test/
+data/val2017/
+data/train2017/
+data/test2017/
 *.zip
 *.tar.gz
 *.rar

@@ -17,7 +17,7 @@ class COCOEvaluatorMAP:
 
         self.model_args = {
             "model_path": args.model_path,
-            "gpu_memory_utilization": 0.9,
+            "gpu_memory_utilization": 0.8,
             "max_model_len": 8192
         }
         self.coco_gt = COCO(self.args.anno_dir)

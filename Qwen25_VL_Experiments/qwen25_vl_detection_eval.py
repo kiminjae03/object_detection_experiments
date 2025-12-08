@@ -41,8 +41,8 @@ class Qwen25VLEvaluator:
         
         model_args = {
             "model_path": self.args.model_path,
-            "gpu_memory_utilization": 0.8,  # Reduced from 0.9 to 0.8
-            "max_model_len": 8192  # PR1과 동일하게 설정
+            "gpu_memory_utilization": 0.85,
+            "max_model_len": 4096
         }
         
         llm = LLM(
@@ -50,7 +50,6 @@ class Qwen25VLEvaluator:
             gpu_memory_utilization=model_args["gpu_memory_utilization"],
             max_model_len=model_args["max_model_len"],
             tensor_parallel_size=1,
-            enforce_eager=True,  # 메모리 최적화를 위해 추가
         )
         
         processor = AutoProcessor.from_pretrained(self.args.model_path)
@@ -61,8 +60,6 @@ class Qwen25VLEvaluator:
     def parse_detection_output(self, output_text):
         """Parse model output to extract bounding boxes with robust handling of truncated JSON"""
         try:
-            print(f"Raw output: {output_text[:500]}...")  # Print first 500 chars for debugging
-            
             # Clean up output
             cleaned_output = output_text.strip()
             if '<answer>' in cleaned_output:
@@ -73,14 +70,11 @@ class Qwen25VLEvaluator:
                 cleaned_output = cleaned_output.split('```')[1].split('```')[0]
             
             cleaned_output = cleaned_output.strip()
-            print(f"Cleaned output: {cleaned_output}")
             
             # Try to parse as complete JSON first
             try:
                 detections = json.loads(cleaned_output)
-                print(f"Parsed {len(detections)} detections from complete JSON")
             except json.JSONDecodeError:
-                print("Complete JSON parsing failed, attempting to fix truncated JSON")
                 
                 # Handle truncated JSON by attempting to complete it
                 if cleaned_output.endswith('"label": "'):
@@ -99,10 +93,7 @@ class Qwen25VLEvaluator:
                 # Try parsing again
                 try:
                     detections = json.loads(cleaned_output)
-                    print(f"Successfully parsed {len(detections)} detections after JSON repair")
                 except json.JSONDecodeError:
-                    # Fallback to regex extraction
-                    print("JSON repair failed, using regex extraction")
                     detections = self._extract_detections_regex(output_text)
             
             parsed_detections = []
@@ -122,13 +113,10 @@ class Qwen25VLEvaluator:
                             'bbox': [x1, y1, x2, y2],
                             'score': det.get('score', 1.0)
                         })
-                        print(f"  - {det['label']}: [{x1}, {y1}, {x2}, {y2}]")
             
             return parsed_detections
             
         except Exception as e:
-            print(f"Complete parsing failure: {e}")
-            print(f"Failed output: {cleaned_output}")
             # Final fallback to regex
             return self._extract_detections_regex(output_text)
     
@@ -136,7 +124,6 @@ class Qwen25VLEvaluator:
         """Extract detections using regex as fallback"""
         import re
         
-        print("Using regex fallback extraction")
         detections = []
         
         # More flexible patterns to handle different JSON structures and truncation
@@ -169,16 +156,12 @@ class Qwen25VLEvaluator:
                             'bbox': bbox_coords,
                             'score': 1.0
                         })
-                        print(f"Regex extracted - {label}: {bbox_coords}")
                 except Exception as e:
-                    print(f"Regex parsing error for match {match}: {e}")
                     continue
             
             if detections:
-                print(f"Pattern '{pattern[:30]}...' found {len(detections)} detections")
                 break
         
-        print(f"Total regex extraction found {len(detections)} detections")
         return detections
 
     def _process_images_in_batches(self, llm, processor, images, img_ids, img_dims, batch_size):
@@ -420,10 +403,10 @@ class Qwen25VLEvaluator:
 def main():
     parser = argparse.ArgumentParser(description="Qwen2.5-VL-3B-Instruct COCO Detection Evaluation")
     parser.add_argument("--model_path", type=str, default="Qwen/Qwen2.5-VL-3B-Instruct", help="Model path")
-    parser.add_argument("--anno_dir", type=str, default="data/coco_val2017.json", help="COCO annotation file path")
-    parser.add_argument("--image_dir", type=str, default="data/coco/val2017", help="COCO images directory")
-    parser.add_argument("--sample_num", type=int, default=100, help="Number of samples to evaluate")
-    parser.add_argument("--batch_size", type=int, default=16, help="Batch size for processing")
+    parser.add_argument("--anno_dir", type=str, default="/home/mmpl/workspace/data/annotations/instances_val2017.json", help="COCO annotation file path")
+    parser.add_argument("--image_dir", type=str, default="/home/mmpl/workspace/data/val2017", help="COCO images directory")
+    parser.add_argument("--sample_num", type=int, default=5000, help="Number of samples to evaluate")
+    parser.add_argument("--batch_size", type=int, default=64, help="Batch size for processing")
     
     args = parser.parse_args()
     

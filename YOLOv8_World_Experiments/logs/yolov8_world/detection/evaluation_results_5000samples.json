@@ -1,0 +1,17 @@
+{
+  "model": "YOLOv8-World",
+  "mAP": 0.3197,
+  "mAP_50": 0.4319,
+  "mAP_75": 0.3493,
+  "mAP_small": 0.1470,
+  "mAP_medium": 0.3451,
+  "mAP_large": 0.4459,
+  "AR@1": 0.2779,
+  "AR@10": 0.3837,
+  "AR@100": 0.3895,
+  "AR_small": 0.1748,
+  "AR_medium": 0.4188,
+  "AR_large": 0.5529,
+  "total_processing_time": 131.62,
+  "avg_time_per_image": 0.026
+}

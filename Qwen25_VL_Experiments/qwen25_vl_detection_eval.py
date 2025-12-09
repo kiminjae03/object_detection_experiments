@@ -260,11 +260,10 @@ class Qwen25VLEvaluator:
             if pred['label'] in self.cat_name_to_id:
                 x1, y1, x2, y2 = pred['bbox']
                 
-                # Calculate confidence based on bbox area (similar to PR1 approach)
-                bbox_area = max((x2 - x1) * (y2 - y1), 1)
+                # Calculate confidence as bbox area / image area
+                bbox_area = (x2 - x1) * (y2 - y1)
                 img_area = img_width * img_height
-                area_ratio = bbox_area / img_area if img_area > 0 else 0.0
-                confidence = max(min(area_ratio * 5.0, 1.0), 0.1)
+                confidence = float(bbox_area / img_area) if img_area > 0 else 0.0
                 
                 coco_results.append({
                     "image_id": image_id,

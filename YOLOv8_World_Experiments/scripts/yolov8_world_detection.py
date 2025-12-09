@@ -242,10 +242,10 @@ def main():
                         choices=['yolov8n-world', 'yolov8s-world', 'yolov8m-world', 'yolov8l-world', 'yolov8x-world'],
                         help='YOLOv8-World model variant')
     parser.add_argument('--coco_json', type=str, 
-                        default='data/coco/annotations/instances_val2017.json',
+                        default='/home/mmpl/workspace/data/annotations/instances_val2017.json',
                         help='Path to COCO annotation file')
     parser.add_argument('--image_dir', type=str,
-                        default='data/coco/val2017',
+                        default='/home/mmpl/workspace/data/val2017',
                         help='Directory containing COCO images')
     parser.add_argument('--output', type=str,
                         default='results/yolov8_world_results.json',

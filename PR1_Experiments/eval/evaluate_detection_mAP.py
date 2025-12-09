@@ -172,13 +172,10 @@ class COCOEvaluatorMAP:
                     
                     x1, y1, x2, y2 = det["bbox_2d"]
                     
-                    # Improved confidence calculation
-                    bbox_area = max((x2 - x1) * (y2 - y1), 1)  # Avoid zero area
+                    # Calculate confidence as bbox area / image area
+                    bbox_area = (x2 - x1) * (y2 - y1)
                     img_area = img_width * img_height
-                    
-                    # Normalize confidence to reasonable range [0.1, 1.0]
-                    area_ratio = bbox_area / img_area if img_area > 0 else 0.0
-                    confidence = max(min(area_ratio * 5.0, 1.0), 0.1)  # Scale and clamp
+                    confidence = float(bbox_area / img_area) if img_area > 0 else 0.0
                     
                     results.append({
                         "image_id": img_id,
